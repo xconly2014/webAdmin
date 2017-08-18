@@ -1,0 +1,90 @@
+.glyphicon{ top: 2px;}
+.v-line{
+    background-color: #ddd;
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+.set-filter-form .btn-lg{ height: 84px;}
+.set-filter-form .col-sm-4, .set-filter-form .col-sm-10{ padding-left: 0;}
+.won_tip_fix,.won_tip{
+    color: red;
+    text-align: center;
+    display: none;
+}
+.changeconfig{
+    display: none;
+}
+.margin_l{
+    margin-left: 60px;
+}
+.paddingR_0{
+    padding-right: 0;
+}
+.margin_top29{
+    margin-top: 29px;
+}
+#pinka_state{
+    padding: 6px 6px;
+}
+.fix .btn-info{
+    color: #555;
+    background-color: white;
+    border-color: #ccc;
+}
+.fix .btn-info:hover, .fix .btn-info:focus, .fix .btn-info.focus, .fix .btn-info:active, .fix .btn-info.active,.fix .open>.dropdown-toggle.btn-info{
+    color: #555;
+    background-color: white;
+    border-color: #ccc;
+}
+.font_14{
+    font-size: 14px;
+}
+.visibility{
+    visibility:hidden;
+}
+.a_font_blue{
+    color: #08c;
+}
+.a_font_blue:hover{text-decoration: underline;}
+.div_border{
+    border: 1px solid #ccc;
+    min-height: 40px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  
+}
+.baselist_space{
+    padding-left: 20px;
+}
+.orange {
+    background: #D53F26 !important;
+}
+.baselist_marbottom10{
+    margin-bottom: 10px;
+}
+.baselist_marbottom30{
+    margin-bottom: 30px;
+}
+#edit{
+   margin-bottom: 200px;
+}
+.docked_space{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.margin_bottom_100{
+    margin-bottom: 100px;
+}
+.margin_bottom_35{
+    margin-bottom: 35px;
+}
+.padding_20{
+    padding: 0 40px;
+}
+.margin_bottom_15{
+    margin-bottom: 15px;
+}

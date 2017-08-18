@@ -1,0 +1,37 @@
+[
+    {
+        "id": "10001",
+        "name": "sdkrebate_conf",
+        "value": "60",
+        "description": "sdk直充返点不能高于百分之60",
+        "state": "有效"
+    },
+    {
+        "id": "10002",
+        "name": "cdn_domain_list",
+        "value": "[{&Prime;name&Prime;:&Prime;网宿&Prime;,&Prime;domain&Prime;:&Prime;http://dl1.pyw.cn&Prime;,&Prime;weight&Prime;:7},{&Prime;name&Prime;:&Prime;阿里&Prime;,&Prime;domain&Prime;:&Prime;http://dl.pyw.cn&Prime;,&Prime;weight&Prime;:3}]",
+        "description": "cdn 域名列表（含权重）",
+        "state": "有效"
+    },
+    {
+        "id": "10003",
+        "name": "sdkcpreq_alert_recv",
+        "value": "wugl@yyft.com, lamng.gz@gmail.com",
+        "description": "SDK CP 回调失败报警email接收人，多个用,分开",
+        "state": "有效"
+    },
+    {
+        "id": "10004",
+        "name": "sms_alert_receiver",
+        "value": "13435695274",
+        "description": "同一ip短信发送数量预警，接收号码",
+        "state": "有效"
+    },
+    {
+        "id": "10005",
+        "name": "priceverify_conf",
+        "value": "500,35",
+        "description": "价格校验配置：单价超过500而且折扣低于35%,列为校验不通过",
+        "state": "有效"
+    }
+]
