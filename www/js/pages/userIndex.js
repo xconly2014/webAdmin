@@ -1,5 +1,5 @@
 $(function () {
-    dataCtrl.currNav('page_nav_3');
+    // dataCtrl.currNav('page_nav_3');
 
     // 查询|分页
     $('div#DataTables_paginate a').click(function(){
@@ -26,30 +26,51 @@ $(function () {
         });
     });
 
-    /*++++++++++++++++++++  修改密码 ++++++++++++++++++++*/
+    /*++++++++++++++++++++  编辑用户 ++++++++++++++++++++*/
     $(document).on('click', '.edit-btn', function () {
         var id = $(this).data('id');
         layer.open({
             type: 2,
-            title: '修改密码',
-            shade: 0.5,
-            move: false,
-            area: ['400px', '38%'],
-            content: 'user/editPWD?id=' + id
-        });
-    });
-
-    /*++++++++++++++++++++  重置密码 ++++++++++++++++++++*/
-    $(document).on('click', '.reset-btn', function () {
-        var id = $(this).data('id');
-        layer.open({
-            type: 2,
-            title: '重置密码',
+            title: '编辑用户',
             shade: 0.5,
             move: false,
             area: ['400px', '30%'],
-            content: 'user/resetPWD?id=' + id
+            content: 'user/editUser?id=' + id
         });
+    });
+
+    /*++++++++++++++++++++  删除用户 ++++++++++++++++++++*/
+    $(document).on('click', '.del-btn', function () {
+        var _this = $(this);
+        var uid = _this.data('id');
+        var index = layer.confirm('确定删除该用户吗？',{
+            title: '三叉戟提示',
+            closeBtn: false
+        },function(){
+            $.ajax({
+                url: 'user/delUser',
+                type: 'post',
+                data :{uid:uid},
+                dataType: 'json',
+                success: function(data){
+                    if(data.ack){
+                        layer.msg('删除成功',{time:1500},function(){
+                            _this.parents('tr').remove();
+                        });                        
+                    }else{
+                        layer.msg('删除失败',{time:1500},function(){
+                            layer.close(index);
+                        }); 
+                    }
+                },
+                error: function(){
+                    layer.msg('删除失败',{time:1500},function(){
+                        layer.close(index);
+                    });                    
+                }
+            });
+        });
+        
     });
 
     /*++++++++++++++++++++  离职清权限 ++++++++++++++++++++*/

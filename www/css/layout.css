@@ -2,7 +2,7 @@ body{
     background-color: #eaedf4;
     color: #666f7b;
     padding-top: 60px;
-    padding-left: 70px;
+    padding-left: 120px;
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
     font-size: 14px;
 }
@@ -41,14 +41,14 @@ a{ color: #666f7b;}a:hover, a:focus{ color: #3598db; text-decoration: none;}
 .head-nav .nav>li>a{ color: #9bccee; height: 60px; line-height: 30px;}
 .head-nav .nav .open>a, .head-nav .nav .open>a:focus, .head-nav .nav .open>a:hover{ border-color: transparent;}
 .navbar-brand{
-    background: url(../images/logo.png) no-repeat;
+    /*background: url(../images/logo.png) no-repeat;*/
     color: #fff;
-    width: 195px;
+    width: 220px;
     height: 27px;
     line-height: 30px;
     font-size: 20px;
     font-weight: 300;
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     margin-right: 30px;
     margin-left: 0!important;
 }
@@ -104,7 +104,7 @@ a{ color: #666f7b;}a:hover, a:focus{ color: #3598db; text-decoration: none;}
     background: #fff;
     border-right: 1px #d7dbe4 solid;
     box-shadow: 1px 0 4px #dee4f1;
-    width: 70px;
+    width: 120px;
     padding: 15px 0;
     zoom: 1;
     position: fixed;
@@ -203,7 +203,7 @@ a{ color: #666f7b;}a:hover, a:focus{ color: #3598db; text-decoration: none;}
 .page-nav .dropdown-menu>li>a{ border: 0; float: none; padding: 5px 15px;}
 .page-nav .dropdown-menu>li>a:hover, .page-nav .dropdown-menu>li>a:focus{}
 /* container */
-.data-main{ margin-top: 55px;}
+.data-main{ margin-top: 20px;}
 .panel{ box-shadow: 0 1px 1px #dde1e9;}
 .panel-default { border-color: #e4e7ef;}
 .panel-default>.panel-heading{

@@ -76,9 +76,10 @@ class Auth_model extends CI_Model{
         'AUTH_USER'         => 'admin_user'             // 用户信息表
     );
 
-    function _construct(){
-        $this->db=$this->load->database('master');
-    }
+    function __construct(){
+        parent::__construct();
+        $this->db=$this->load->database('master',true);
+    }    
 
     /**
       * 检查权限
@@ -141,7 +142,7 @@ class Auth_model extends CI_Model{
         $user_groups = $this->db
             ->select('rules')
             ->from($this->_config['AUTH_GROUP_ACCESS'] . ' a')            
-            ->join($this->_config['AUTH_GROUP'].'g', "a.group_id=g.id")
+            ->join($this->_config['AUTH_GROUP'].' g', "a.group_id=g.id")
             ->where("a.uid='$uid' and g.status='1'")
             ->get()->result_array();
         $groups[$uid]=$user_groups?:array();
@@ -176,12 +177,11 @@ class Auth_model extends CI_Model{
         }
 
         $map=array(
-            'id'=>array('in',$ids),
             'type'=>$type,
             'status'=>1,
         );
         //读取用户组所有权限规则
-        $rules = $this->db->select('condition,name')->from($this->_config['AUTH_RULE'])->where($map)->get()->result_array();
+        $rules = $this->db->select('condition,name')->from($this->_config['AUTH_RULE'])->where($map)->where_in('id',$ids)->get()->result_array();
         //循环规则，判断结果。
         $authList = array();   //
         foreach ($rules as $rule) {

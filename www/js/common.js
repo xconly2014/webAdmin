@@ -1,8 +1,8 @@
 var dataCtrl = {
     //当前菜单
-    currNav: function (ele) {
-        document.getElementById(ele).className = 'active';
-    },
+    // currNav: function (ele) {
+    //     document.getElementById(ele).className = 'active';
+    // },
     //table 全选/反选
     tableCheckAll: function () {
         /* 全选/反选 */
@@ -109,6 +109,9 @@ $(function () {
             $filterBd.addClass('hide');
             $tx.html('<i class="glyphicons glyphicons-chevron-down"></i>');
         }
+    });
+    $('.side-nav').click(function(){
+        $(this).next('.nav').slideToggle("slow");
     });
 
     //select控件

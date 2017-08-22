@@ -1,72 +1,87 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends MY_Controller {
+    
+    function __construct()
+    {   
+        parent::__construct();
+        $this->load->model('User_model');
+        
+        $islogin = self::checkLogin();
+        if(!$islogin){
+            redirect(site_url('login/index'));
+        }
+    }
+    
+    private function checkLogin(){
+        if(empty($_SESSION['user']['userid'])) return false;
+        return $_SESSION['user']['userid'];
+    }
+    
+    //用户管理页
 	public function index(){
-		$data['title'] = '用户管理 - 用户权限';
+		$data['title'] = '用户管理 - 用户列表';
+		
+		$result = $this->User_model->getUserList();
+		if($result){
+		    $data['list'] = $result;
+		}
 		$this->load->view('userManage/index', $data);
 	}
 
 	//新增用户 表单
 	public function addUser(){
-		$data['title'] = '新增用户 - 用户权限';
+		$data['title'] = '用户管理 - 新增用户';
+        
+		$data['group'] = $this->User_model->getGroup();
 		$this->load->view('userManage/addUser', $data);
 	}
-	//模拟成功插入用户
+	
+	//插入用户
 	public function insertUer(){
-		exit(json_encode(array('ack' => true, 'msg' => '新增用户成功！')));
+	    $result = $this->User_model->create($this->input->post('username'),$this->input->post('password'),1);
+	    if($result['ack']){
+	        exit(json_encode(array('ack' => true, 'msg' => '新增用户成功！')));
+	    }else{
+	        exit(json_encode(array('ack' => false, 'msg' => '新增用户失败！')));
+	    }
+		
 	}
 
-	//修改密码 表单
-	public function editPWD(){
+	//编辑用户组  表单
+	public function editUser(){
 		$id = $this->input->get('id');
-		$data['title'] = '修改密码 - 用户权限';
+		$data['title'] = '用户管理 - 编辑用户';
 		$data['id'] = $id;
-		$this->load->view('userManage/editPWD', $data);
+		
+		$result = $this->User_model -> getUserInfo($id);
+		$data['username'] = $result['username'];	
+		
+		$data['group'] = $this->User_model->getGroup();
+		$this->load->view('userManage/editUser', $data);
 	}
-	//模拟成功修改密码
-	public function modifyPWD(){
-		exit(json_encode(array('ack' => true, 'msg' => '修改密码成功！')));
+	
+	//修改用户组 ajax
+	public function modifyUser(){
+	    $uid = $this->input->post('uid');
+	    $group_id = $this->input->post('gid');
+	    $result = $this->User_model->updateGroup($uid,$group_id);
+	    if($result){
+	        exit(json_encode(array('ack' => true, 'msg' => '修改成功！')));
+	    }else{
+	        exit(json_encode(array('ack' => true, 'msg' => '修改失败！')));
+	    }
 	}
-
-	//重置密码 表单
-	public function resetPWD(){
-		$id = $this->input->get('id');
-		$data['title'] = '重置密码 - 用户权限';
-		$data['id'] = $id;
-		$this->load->view('userManage/resetPWD', $data);
-	}
-	//模拟成功重置密码
-	public function oncePWD(){
-		exit(json_encode(array('ack' => true, 'msg' => '修改密码成功！')));
-	}
-
-	//分配角色 表单
-	public function allotForm(){
-		$id = $this->input->get('id');
-		$data['title'] = '分配角色 - 用户权限';
-		$data['id'] = $id;
-		$this->load->view('userManage/allotForm', $data);
-	}
-	//模拟成功分配角色
-	public function changeAllot(){
-		exit(json_encode(array('ack' => true, 'msg' => '分配角色成功！')));
-	}
-
-	//模拟 离职清权限 成功
-	public function clearPower(){
-		exit(json_encode(array('ack' => true, 'msg' => '离职清权限成功！')));
-	}
-
-	//修改密码 页面
-	public function changePassword(){
-		$data['title'] = '用户管理 - 修改密码';
-		$this->load->view('userManage/changePassword', $data);
-	}
-
-	//重置密码 页面
-	public function resetPassword(){
-		$data['title'] = '用户管理 - 重置密码';
-		$this->load->view('userManage/resetPassword', $data);
+	
+	//删除用户
+	public function delUser(){
+	    $uid = $this->input->post('uid');
+	    $result = $this->User_model->update(array('status' => 0),array('id' => $uid));
+	    if($result){
+	        exit(json_encode(array('ack' => true, 'msg' => '删除成功！')));
+	    }else{
+	        exit(json_encode(array('ack' => true, 'msg' => '删除失败！')));
+	    }
 	}
 }

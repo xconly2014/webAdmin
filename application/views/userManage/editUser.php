@@ -7,27 +7,18 @@
     <title><?php echo $title; ?></title>
     <base href="<?php echo base_url(); ?>">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-table.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/select.css">
-
 </head>
 
 <body class="iframe-body">
-<!--{ 新增用户 -->
 <div class="row">
     <div class="col-sm-12">
-        <form class="form-horizontal" id="add_form" role="form">
+        <form class="form-horizontal" id="edit_form" role="form">
             <div class="form-group">
-                <label class="col-sm-3 control-label"><samp class="f-samp">*</samp>用户名</label>
+                <label class="col-sm-3 control-label">用户名</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="username" name="username">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label"><samp class="f-samp">*</samp>用户密码</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="password" name="password">
+                    <label class="control-label"><?php echo $username;?></label>
                 </div>
             </div>
             <div class="form-group">
@@ -42,7 +33,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-9 col-sm-offset-3">
-                    <button type="button" class="btn btn-primary" id="ok_btn">
+                    <button type="button" class="btn btn-primary" id="ok_btn" data-id="<?php echo $id;?>">
                         <i class="glyphicons glyphicons-ok fn-mr-5"></i>确定
                     </button>
                     <button type="button" class="btn btn-default" id="cancel_btn">取消</button>
@@ -51,7 +42,6 @@
         </form>
     </div>
 </div>
-<!--/ 新增用户 }-->
 
 <script src="js/plugins/jquery.js"></script>
 <script src="js/plugins/bootstrap.min.js"></script>
@@ -65,29 +55,15 @@
 
         //确定
         $('#ok_btn').click(function () {
-            var username = $('#username'), pwd = $('#password'), group = $('#group');
-            if(username.val() == ''){
-                layer.msg('请输入用户名', {time: 1200});
-                username.focus();
-                return false;
-            }else if(pwd.val() == ''){
-                layer.msg('请输入密码', {time: 1200});
-                pwd.focus();
-                return false;
-            }else if(pwd.val().length < 6 || pwd.val().length > 18){
-                layer.msg('密码长度在6-18位之间', {time: 1500});
-                pwd.focus();
-                return false;
-            }
-
             //父级地址
             var parentURL = window.parent.location.href;
-            //请配置ajax
-            var datas = {username:username.val(),password:pwd.val(),group:group.val()};
+
+            var uid = $(this).data('id'), gid = $('#group').val();
+            //请在这里配置ajax
             $.ajax({
-                url: 'user/insertUer',
+                url: 'user/modifyUser',
                 type: 'post',
-                data: datas,
+                data: {uid:uid, group_id:gid},
                 dataType: 'json',
                 success: function (data) {
                     if (data.ack == true) {
@@ -96,10 +72,11 @@
                             window.parent.location.reload(parentURL);
                         });
                     }else{
-                        layer.msg(data.msg, {time: 1200});
+                        layer.msg('修改密码失败', {time: 1200});
                     }
                 }
             });
+
         });
 
         //取消
