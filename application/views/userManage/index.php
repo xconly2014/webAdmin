@@ -99,7 +99,6 @@
 <script src="js/plugins/bootstrap.min.js"></script>
 <script src="js/plugins/select2.min.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
-<script src="js/plugins/jquery.validate.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/pages/userIndex.js"></script>
 </body>

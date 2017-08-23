@@ -61,7 +61,7 @@
             var uid = $(this).data('id'), gid = $('#group').val();
             //请在这里配置ajax
             $.ajax({
-                url: 'user/modifyUser',
+                url: 'user/editUser',
                 type: 'post',
                 data: {uid:uid, group_id:gid},
                 dataType: 'json',

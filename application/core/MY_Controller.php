@@ -8,9 +8,7 @@ class MY_Controller extends CI_Controller{
         
         $this->load->model('Auth_model');
         
-        if(empty($_SESSION['user']['userid'])) return false;
-        $uid = $_SESSION['user']['userid'];
-        
+        $uid = self::checkLogin();       
         if(!$uid){
             redirect(site_url('login/index'));
         }
@@ -23,5 +21,10 @@ class MY_Controller extends CI_Controller{
                 echo '您没有访问权限';exit;
         }
         
+    }
+    
+    private function checkLogin(){
+        if(empty($_SESSION['user']['userid'])) return false;
+        return $_SESSION['user']['userid'];
     }
 }

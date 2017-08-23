@@ -82,10 +82,11 @@
 
             //父级地址
             var parentURL = window.parent.location.href;
+            
             //请配置ajax
             var datas = {username:username.val(),password:pwd.val(),group:group.val()};
             $.ajax({
-                url: 'user/insertUer',
+                url: 'user/addUser',
                 type: 'post',
                 data: datas,
                 dataType: 'json',

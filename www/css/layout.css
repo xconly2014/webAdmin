@@ -15,6 +15,7 @@ body{
     *display: inline;
     zoom: 1;
 }
+li{list-style:none;}
 a{ color: #666f7b;}a:hover, a:focus{ color: #3598db; text-decoration: none;}
 .f-samp{ color: red;}
 .mb0{ margin-bottom: 0!important;}

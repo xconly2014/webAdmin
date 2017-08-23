@@ -11,9 +11,6 @@ $(function () {
         return false;
     });
 
-
-    var allotForm = document.getElementById('allot_form');
-
     /*++++++++++++++++++++ 新增用户 ++++++++++++++++++++*/
     $(document).on('click', '.add-btn', function () {
         layer.open({
@@ -73,47 +70,15 @@ $(function () {
         
     });
 
-    /*++++++++++++++++++++  离职清权限 ++++++++++++++++++++*/
-    $(document).on('click', '.clear-btn', function () {
-        var _this = this,
-            id = $(_this).data('id'),
-            $title = $(_this).data('title'),
-            $typeTx = $(_this).parents('tr').find("td:nth-child(3) .td-inner-tx");
-
-        layer.confirm('确定执行离职清权限吗？', {
-            title: $title,
-            closeBtn: false
-        }, function () {
-            // 配置ajax数据
-            $.ajax({
-                url: 'user/clearPower',
-                type: 'post',
-                data: '',
-                dataType: 'json',
-                success: function (data) {
-                    layer.msg(data.msg, {time: 1500}, function () {
-                        $typeTx.html('<span class="label label-danger">离职</span>');
-                        $(_this).tooltip('destroy');
-                        $(_this).remove();
-                        layer.close();
-                    });
-                }
-            });
-
-        });
-
-    });
-
-    /*++++++++++++++++++++  分配角色 ++++++++++++++++++++*/
-    $(document).on('click', '.allot-btn', function () {
-        var id = $(this).data('id');
+    /*++++++++++++++++++++ 新增用户组 ++++++++++++++++++++*/
+    $(document).on('click', '.add-group', function () {
         layer.open({
             type: 2,
-            title: '分配角色',
+            title: '新增用户组',
             shade: 0.5,
             move: false,
-            area: ['600px', '50%'],
-            content: 'user/allotForm?id=' + id
+            area: ['80%', '80%'],
+            content: 'user/addGroup'
         });
     });
 
